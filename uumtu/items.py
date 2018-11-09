@@ -5,10 +5,12 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
 
-class UumtuItem(scrapy.Item):
+class MoteItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    mote = Field()
+    url = Field()
+    title = Field()
