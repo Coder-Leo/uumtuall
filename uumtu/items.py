@@ -14,3 +14,8 @@ class MoteItem(Item):
     mote = Field()
     url = Field()
     title = Field()
+
+class XingganItem(Item):
+    url = Field()
+    title = Field()
+    website = Field()
