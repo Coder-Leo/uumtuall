@@ -3,7 +3,7 @@
     "website": "优优美图",
     "type": "美图",
     "index": "https://www.uumtu.com/",
-    "settings":{
+    "settings": {
         "USER_AGENT": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
     },
     "start_urls": [
@@ -12,5 +12,35 @@
     "allowed_domains": [
         "uumtu.com"
     ],
-    "rules": "xinggan"
+    "rules": "xinggan",
+    "item": {
+        "class": "XingganItem",
+        "loader": "XingganLoader",
+        "attrs": {
+            "title": [
+                {
+                    "method": "xpath",
+                    "args": [
+                        "//div[contains(@class, 'imgac')]/a/img/@alt"
+                    ]
+                }
+            ],
+            "url": [
+                {
+                    "method": "xpath",
+                    "args": [
+                        "//div[contains(@class, 'imgac')]/a/img/@src"
+                    ]
+                }
+            ],
+            "website": [
+                {
+                    "method": "value",
+                    "args": [
+                        "优优美图"
+                    ]
+                }
+            ]
+        }
+    }
 }
