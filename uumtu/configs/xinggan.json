@@ -1,0 +1,16 @@
+{
+    "spider": "universal",
+    "website": "优优美图",
+    "type": "美图",
+    "index": "https://www.uumtu.com/",
+    "settings":{
+        "USER_AGENT": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
+    },
+    "start_urls": [
+        "https://www.uumtu.com/xinggan"
+    ],
+    "allowed_domains": [
+        "uumtu.com"
+    ],
+    "rules": "xinggan"
+}
