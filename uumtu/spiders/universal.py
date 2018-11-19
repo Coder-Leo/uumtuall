@@ -7,6 +7,7 @@ from uumtu.rules import rules
 from uumtu.items import XingganItem
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import TakeFirst, Join, Compose
+from uumtu import urls
 
 class PicsLoader(ItemLoader):
     default_output_processor = TakeFirst()
@@ -23,7 +24,12 @@ class UniversalSpider(CrawlSpider):
         print('---- config:', config)
         self.config = config
         self.rules = rules.get(config.get('rules'))
-        self.start_urls = config.get('start_urls')
+        start_urls = config.get('start_urls')
+        if start_urls:
+            if start_urls.get('type') == 'static':
+                self.start_urls = start_urls.get('value')
+            elif start_urls.get('type') == 'dynamic':
+                self.start_urls = list(eval('urls.' + start_urls.get('method'))(*start_urls.get('args', [])))
         self.allowed_domains = config.get('allowed_domains')
         super(UniversalSpider, self).__init__(*args, **kwargs)
 
