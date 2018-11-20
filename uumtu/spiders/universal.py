@@ -35,6 +35,7 @@ class UniversalSpider(CrawlSpider):
 
 
     def parse_item(self, response):
+        print('====== response: ', response)
         item = self.config.get('item')
         if item:
             cls = eval(item.get('class'))()
@@ -51,3 +52,13 @@ class UniversalSpider(CrawlSpider):
                     if extractor.get('method') == 'attr':
                         loader.add_value(key, getattr(response, *extractor.get('args')))
         yield loader.load_item()
+
+        # 生成该mote的指定专辑中的所有图的连接请求
+        atext = response.xpath('//div[contains(@class, "page")]//a[last()]/text()').extract_first()
+        if atext == '末页':
+            # print('--- 该专辑存在‘末页’。继续请求下一张图')
+            nexturl = response.xpath('//div[contains(@class, "page")]//a[last() - 1]/@href').extract_first()
+            # print('---- 下一张图的url:', nexturl)
+            yield response.follow(nexturl, self.parse_item)
+        else:
+            print('-- 该专辑没有下一张图了！ --')

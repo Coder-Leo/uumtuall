@@ -4,7 +4,10 @@
     "type": "美图",
     "index": "https://www.uumtu.com/",
     "settings": {
-        "USER_AGENT": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36"
+        "USER_AGENT": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36",
+        "ITEM_PIPELINES": {
+            "uumtu.pipelines.XingganDownloadPipeline": 300
+        }
     },
     "start_urls": {
         "type": "static",
